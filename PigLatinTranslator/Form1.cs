@@ -59,7 +59,12 @@ namespace PigLatinTranslator
 				punct = word.Substring(word.Length - 1);
 				word = word.Remove(word.Length - 1, 1);
 			}
-			word = TranslateWord(word);
+			if (IsInitialCap(word))
+				word = ToInitialCap(TranslateWord(word));
+			if (IsUpper(word))
+				word = TranslateWord(word).ToUpper();
+			if (IsLower(word))
+				word = TranslateWord(word).ToLower();
 			word += punct;
 			return word;
 		}
