@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,15 +32,27 @@ namespace PigLatinTranslator
 
 		private void btnTranslate_Click(object sender, EventArgs e)
 		{
+			string english = txtEnglish.Text.Trim();
 			if (!string.IsNullOrEmpty(txtEnglish.Text))
 			{
-				//do something
+				string[] words = english.Split(' ');
+				string piglatin = "";
+				foreach (string word in words)
+				{
+					piglatin += TranslateWord(word) + " ";
+				}
+				txtPigLatin.Text = piglatin;
 			}
 			else
 			{
 				MessageBox.Show("You must enter some text to translate.", "Enter");
 				txtEnglish.Focus();
 			}
+		}
+
+		private string TranslateWord(string word)
+		{
+			return word;
 		}
 	}
 }
